@@ -11,3 +11,5 @@ GeneratedPluginRegistrant.java
 key.properties
 **/*.keystore
 **/*.jks
+# Android build artifacts after Flutter 3.29 update
+.cxx/
