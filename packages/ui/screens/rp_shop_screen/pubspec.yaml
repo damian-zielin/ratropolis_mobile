@@ -1,0 +1,24 @@
+name: rp_shop_screen
+description: "A new Flutter package project."
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ">=3.7.2 <4.0.0"
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+  game_core:
+    path: ../../../core/game_core
+  provider: ^6.1.5+1
+  rp_widgets:
+    path: ../../rp_widgets
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true

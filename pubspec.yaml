@@ -1,9 +1,76 @@
-name: ratropolis
-description: Flutter monorepo managed by Melos
+name: ratropolis_workspace
+description: Required by pub workspaces feature to setup the workspace.
 publish_to: none
+version: 1.0.0
 
 environment:
   sdk: ">=3.7.2 <4.0.0"
 
+workspace:
+  - app
+  - packages/core/game_assets
+  - packages/core/game_core
+  - packages/core/game_state
+  - packages/ui/rp_widgets
+  - packages/ui/screens/rp_cards_screen
+  - packages/ui/screens/rp_city_screen
+  - packages/ui/screens/rp_game_screen
+  - packages/ui/screens/rp_heroes_screen
+  - packages/ui/screens/rp_shop_screen
+  - packages/ui/screens/rp_user_screen
+
 dev_dependencies:
-  melos: ^6.3.2
+  melos: ^7.3.0
+
+melos:
+  command:
+    bootstrap:
+      environment:
+        sdk: ">=3.7.2 <4.0.0"
+      dependencies:
+        # External Dependencies
+        cupertino_icons: ^1.0.8
+        flutter:
+          sdk: flutter
+        lottie: ^3.3.1
+        provider: ^6.1.5+1
+
+      dev_dependencies:
+        flutter_lints: ^4.0.0
+        flutter_test:
+          sdk: flutter
+
+  scripts:
+    outdated:deps:
+      description: Identify out-of-date package dependencies and get advice on how to update them.
+      run: dart pub outdated
+
+    format:
+      description: Format Dart files
+      run: dart format .
+
+    format:check:
+      description: Check formatting
+      run: dart format --set-exit-if-changed .
+
+    fix:
+      description: Apply automatically fixes into dart code.
+      run: dart fix . --apply
+    fix:dry:
+      description: Detect possible fixes into dart code, no modification is done.
+      run: dart fix . --dry-run
+
+    analyze:
+      description: Run Dart analyzer
+      run: flutter analyze
+
+    test:
+      description: Run all tests
+      run: flutter test
+
+    verify:
+      description: Full verification pipeline
+      run: |
+        melos run format:check
+        melos run analyze
+        melos run test
